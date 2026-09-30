@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./resume-builder-style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#page-title" aria-label="Resume Builder home">
+        <span class="brand-mark">R</span>
+        <span>Resume Builder</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#builder">Builder</a>
+        <a href="#templates">Templates</a>
+        <a href="#preview">Preview</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="header-action" href="#preview">Preview</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Fast resume workspace</p>
+          <h1 id="page-title">
+            Build a clean resume without fighting the layout.
+          </h1>
+          <p class="hero-text">
+            Fill in your details on the left, choose a style, and watch the
+            resume on the right update as you type. When it looks right, print
+            it.
+          </p>
+          <div class="hero-actions" aria-label="Resume builder actions">
+            <a class="button primary" href="#builder">Start building</a>
+            <a class="button secondary" href="#templates">View templates</a>
+          </div>
+        </div>
+
+        <aside class="stats-panel" aria-label="Resume progress">
+          <div>
+            <span class="stat-value" id="stat-complete">0%</span>
+            <span class="stat-label">Profile complete</span>
+          </div>
+          <div>
+            <span class="stat-value" id="stat-sections">0</span>
+            <span class="stat-label">Sections ready</span>
+          </div>
+          <div>
+            <span class="stat-value">A4</span>
+            <span class="stat-label">Print format</span>
+          </div>
+        </aside>
+      </section>
+
+      <section
+        class="workspace"
+        id="builder"
+        aria-label="Resume builder workspace"
+      >
+        <input
+          class="template-switch"
+          type="radio"
+          name="template"
+          id="template-modern"
+          checked
+        />
+        <input
+          class="template-switch"
+          type="radio"
+          name="template"
+          id="template-classic"
+        />
+        <input
+          class="template-switch"
+          type="radio"
+          name="template"
+          id="template-compact"
+        />
+
+        <form class="builder-panel" id="builder-form">
+          <div class="panel-heading">
+            <p class="eyebrow">Editor</p>
+            <h2>Personal details</h2>
+          </div>
+
+          <div class="form-grid">
+            <label
+              >Full name
+              <input type="text" id="f-name" value="Aarav Sharma" />
+            </label>
+            <label
+              >Job title
+              <input type="text" id="f-title" value="Frontend Developer" />
+            </label>
+            <label
+              >Email
+              <input type="email" id="f-email" value="aarav.sharma@email.com" />
+            </label>
+            <label
+              >Phone
+              <input type="tel" id="f-phone" value="+91 98765 43210" />
+            </label>
+            <label
+              >Location
+              <input type="text" id="f-location" value="Bengaluru, India" />
+            </label>
+            <label
+              >LinkedIn or portfolio URL
+              <input type="url" id="f-link" placeholder="https://" />
+            </label>
+          </div>
+
+          <label
+            >Professional summary
+            <textarea rows="4" id="f-summary">
+Frontend developer focused on accessible interfaces, responsive design, and practical product experiences.</textarea
+            >
+          </label>
+
+          <div class="panel-heading compact">
+            <p class="eyebrow">Experience</p>
+            <h2>Work history</h2>
+          </div>
+          <div id="experience-list"></div>
+          <button type="button" class="add-btn" id="add-experience">
+            + Add another role
+          </button>
+
+          <div class="panel-heading compact">
+            <p class="eyebrow">Education</p>
+            <h2>Academic background</h2>
+          </div>
+          <div id="education-list"></div>
+          <button type="button" class="add-btn" id="add-education">
+            + Add education
+          </button>
+
+          <div class="panel-heading compact">
+            <p class="eyebrow">Skills</p>
+            <h2>Key skills</h2>
+          </div>
+          <div class="skills-input-row">
+            <input
+              type="text"
+              id="f-skill-input"
+              placeholder="e.g. TypeScript"
+            />
+            <button type="button" id="add-skill">Add</button>
+          </div>
+          <div class="skills-form-list" id="skills-form-list"></div>
+
+          <div class="panel-heading compact">
+            <p class="eyebrow">Style</p>
+            <h2>Choose a template</h2>
+          </div>
+          <div
+            class="template-row"
+            id="templates"
+            aria-label="Template choices"
+          >
+            <label class="template-card modern-card" for="template-modern"
+              ><span>Modern</span></label
+            >
+            <label class="template-card classic-card" for="template-classic"
+              ><span>Classic</span></label
+            >
+            <label class="template-card compact-card" for="template-compact"
+              ><span>Compact</span></label
+            >
+          </div>
+        </form>
+
+        <section class="preview-panel" id="preview" aria-label="Resume preview">
+          <div class="preview-toolbar">
+            <span>Live preview</span>
+            <button type="button" class="print-ready" id="print-btn">
+              Print ready
+            </button>
+          </div>
+
+          <article class="resume-sheet" id="resume-sheet">
+            <header class="resume-header">
+              <div>
+                <h2 id="prev-name">Aarav Sharma</h2>
+                <p id="prev-title">Frontend Developer</p>
+              </div>
+              <ul id="prev-contact"></ul>
+            </header>
+
+            <section class="resume-section">
+              <h3>Profile</h3>
+              <p id="prev-summary"></p>
+            </section>
+
+            <section class="resume-section">
+              <h3>Experience</h3>
+              <div id="prev-experience"></div>
+            </section>
+
+            <section class="resume-section">
+              <h3>Education</h3>
+              <div id="prev-education"></div>
+            </section>
+
+            <section class="resume-section">
+              <h3>Skills</h3>
+              <div class="skill-list" id="prev-skills"></div>
+            </section>
+          </article>
+        </section>
+      </section>
+
+      <section
+        class="contact-section"
+        id="contact"
+        aria-label="Contact support"
+      >
+        <div class="contact-inner">
+          <p class="eyebrow">Need a hand?</p>
+          <h2>Tell us what's tricky and we'll follow up.</h2>
+          <p>
+            Stuck on wording, formatting, or exporting? Send a note and we'll
+            get back to you by email.
+          </p>
+          <form class="contact-form" id="contact-form">
+            <label
+              >Your name
+              <input type="text" id="c-name" required />
+            </label>
+            <label
+              >Email
+              <input type="email" id="c-email" required />
+            </label>
+            <label
+              >What do you need help with?
+              <input
+                type="text"
+                id="c-topic"
+                placeholder="e.g. exporting to PDF"
+              />
+            </label>
+            <p class="form-note" id="contact-note" hidden></p>
+            <button type="submit" class="button primary" id="contact-submit">
+              Send message
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="./resume.js"></script>
+  </body>
+</html>
